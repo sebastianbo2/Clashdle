@@ -54,11 +54,11 @@ Bomber,Builder Base,Walls,Area Splash (Ground Only),12,19,2,3.5
 Cannon Cart,Builder Base,None,Ranged (Ground Only),16,19,1.2,4.5
 Night Witch,Builder Base,None,Area Splash (Ground & Air),14,12,0.7,4
 Drop Ship,Builder Base,Defenses,Area Splash (Ground Only),-,12,3.5,0.5
-Power P.E.K.K.A,Builder Base / Clan Capital,None,Single Target,22,16,1.8,0.8
+Power Pekka,Builder Base / Clan Capital,None,Single Target,22,16,1.8,0.8
 Hog Glider,Builder Base / Clan Capital,Defenses,Melee (Ground Only),12,24,1,0.75
 Electrofire Wizard,Builder Base,None,Ranged (Ground & Air),14,22,0.128,3.5
 Battle Ram,Clan Capital,Walls,Area Splash (Ground Only),5,16,1,0.75
-Minion Horde,Clan Capital,None,Ranged (Ground & Air),2,24,1,1.5
+Minion Horde,Clan Capital,None,Ranged (Ground & Air),10,24,1,1.5
 Skeleton Barrel,Clan Capital,Defenses,Melee (Ground Only),5,8,1,0.5
 Flying Fortress,Clan Capital,Defenses,Ranged (Ground & Air),100,9,2,4.5
 Raid Cart,Clan Capital,None,Ranged (Ground Only),30,9,2.5,4.5

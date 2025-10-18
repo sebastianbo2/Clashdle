@@ -59,27 +59,31 @@ export default function SearchBar() {
     const [inputText, setInputText] = useState("");
     
     return (
-        <div className="bg-[#d1d0c5] rounded-xl">
-            <input className="p-5 w-[400px] placeholder:text-[#2c2e31] placeholder:opacity-[0.8] text-[#2c2e31] focus:border-none"
-            type="text"
-            placeholder="Search any troop..."
-            onChange={(e) => {
-                handleSearch(e.target.value);
-                setInputText(e.target.value);
-            }} />
-            {/* <button className=""> </button> */}
-
-            <div className="">
-                <div className="border-[3px] border-solid border-red-500 p-5">
-                {inputText.length != 0 ? parsedTroops.filter((troop) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase())).map((troop) => {
-                    return (
-                        <button className="block hover:opacity-[0.7] hover:cursor-pointer select-none">
-                            {troop.troop_name}
-                        </button>
-                    )
-                }): <></>}
-                </div>
+        <div className="relative">
+            <div className="bg-[#d1d0c5] rounded-xl">
+                <input className="p-5 w-[400px] placeholder:text-[#2c2e31] placeholder:opacity-[0.8] text-[#2c2e31] focus:border-none"
+                type="text"
+                placeholder="Search any troop..."
+                onChange={(e) => {
+                    handleSearch(e.target.value);
+                    setInputText(e.target.value);
+                }} />
+                {/* <button className=""> </button> */}
             </div>
+
+            {inputText.length != 0 && parsedTroops.filter((troop) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase())).length != 0 ?
+                <div className="border-[3px] border-solid border-red-500 pr-5 pl-2 h-78 overflow-y-scroll custom-scrollbar mt-5 bg-[#d1d0c5] rounded-2xl absolute top-[167%] left-[0%] w-100">
+                    {parsedTroops.filter((troop) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase())).map((troop) => {
+                        return (
+                            <button key={troop.troop_name} className="block hover:opacity-[0.7] hover:cursor-pointer select-none pl-2 pr-2 pt-5 pb-5">
+                                <Image src={"/troop_icons/" + troop.troop_name.toLowerCase().replace(/ /g, "_") + ".png"} alt={"Temp"} width={60} height={70}
+                                className="inline mr-5 border-[2px] border-white rounded-xl"/>
+                                <p className="text-[#2c2e31] inline">{troop.troop_name.includes("Pekka") ? troop.troop_name.substring(0, troop.troop_name.indexOf("Pekka")) + "P.E.K.K.A.": troop.troop_name}</p>
+                            </button>
+                        )
+                    })}
+                </div>
+            : ""}
         </div>
     )
 }
