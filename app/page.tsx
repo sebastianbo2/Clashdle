@@ -4,6 +4,7 @@ import Image from "next/image";
 import SearchBar from "./ui/searchBar";
 import GuessDisplay from "./ui/guessDisplay";
 import { useState } from "react";
+import { Suspense } from "react";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -25,7 +26,9 @@ export default function Home() {
 
         <SearchBar value={inputValue} onChange={setInputValue} />
 
-        <GuessDisplay inputText={inputValue} onClear={handleClear} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <GuessDisplay inputText={inputValue} onClear={handleClear} />
+        </Suspense>
       </div>
     </div>
   );
