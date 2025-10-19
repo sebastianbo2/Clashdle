@@ -5,6 +5,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { useState } from "react";
 import Image from "next/image";
 import troopData from "@/assets/troops";
+import getDailyTroop from "@/assets/troopSelector";
 
 interface TroopData {
     troop_name: string,
@@ -50,7 +51,11 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
     const [guesses, setGuesses] = useState<TroopData[]>([]);
 
     const handleSubmission = (troop: TroopData) => {
-        setGuesses(prev => [...prev, troop]);
+        if (guesses.includes(troop)) {
+            console.log("contains already!");
+        } else {
+            setGuesses(prev => [...prev, troop]);
+        }
         const params = new URLSearchParams(searchParams.toString());
 
         params.delete('query');
@@ -58,11 +63,15 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
         replace(`${pathname}?${params.toString()}`);
     }
 
+    const dailyTroop = getDailyTroop();
+
+    console.log(dailyTroop.troop_name);
+
     return (
         <div>
-            {inputText.length != 0 && parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase())).length != 0 &&
+            {inputText.length != 0 && parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase()) && !guesses.some((guess) => guess.troop_name === troop.troop_name)).length != 0 &&
                 <div className="border-[3px] border-solid border-red-500 pr-5 pl-2 h-78 overflow-y-scroll custom-scrollbar mt-5 bg-[#d1d0c5] rounded-2xl absolute left-[40%] w-[20%]">
-                    {parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase())).map((troop) => {
+                    {parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase()) && !guesses.some((guess) => guess.troop_name === troop.troop_name)).map((troop) => {
                         return (
                             <button key={troop.troop_name} className="block hover:opacity-[0.7] hover:cursor-pointer select-none pl-2 pr-2 pt-5 pb-5"
                              onClick={() => {
@@ -78,7 +87,7 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
                 </div>
             }
 
-            <div className="border-[2px] border-white mt-15 flex flex-row">
+            <div className="mt-15 flex flex-row">
                 {convertedNames.map((name) => {
                 return (
                     <div key={name} className="flex flex-col m-5 text-wrap w-[130px] text-center border-b-white border-b-[3px] pl-3 pr-3 text-[16px] h-[67px] justify-center">
@@ -88,10 +97,24 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
                 })}
             </div>
 
-            {guesses.map((guess) => {
+            {[...guesses].reverse().map((guess) => {
                 return (
-                    <div className="border-[2px] border-white mt-5">
-                        {guess.troop_name}
+                    <div className="mt-5 flex flex-row gap-10 pr-5 pl-5">
+                        {Object.entries(guess).map((entry) => {
+                            return (
+                            <div>
+                                {entry[0] != "troop_name" ?
+                                    <div className={"flex flex-col gap-5 w-[130px] h-[130px] flex text-center items-center justify-center border-[1px] rounded-xl "
+                                    + (entry[1] == Object.entries(dailyTroop).find((a) => a[0] == entry[0])?.[1] ? "bg-[#00cf00]": "bg-[#9F0000]")}
+                                    style={{ boxShadow: "inset 0 4px 30px rgba(0, 0, 0, 0.8)" }}>
+                                        <p className="inline-block text-[18px]">{entry[1]}</p>
+                                    </div> : 
+                                    <div className="mt-2 ml-2 mr-2 border-[4px] rounded-2xl" style={{ boxShadow: "inset 0 4px 40px rgba(0, 0, 0, 0.8)" }}>
+                                        <Image className="" src={"/troop_icons/" + entry[1].toLowerCase().replace(/ /g, "_") + ".png"} alt={entry[1]} width={110} height={80}/>
+                                    </div> }
+                            </div>
+                            )
+                        })}
                     </div>
                 )
             })}
