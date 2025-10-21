@@ -11,12 +11,12 @@ export default function Home() {
   const handleClear = () => setInputValue("");
 
   return (
-    <div className="min-h-screen bg-[url('/clashdle_bg.png')] bg-cover bg-center">
+    <div className="h-screen bg-[url('/clashdle_bg.png')] bg-cover bg-center">
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#0e0e0e]/72"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-white p-8 text-[#e2b714]">
+      <div className="relative z-10 flex flex-col items-center h-full text-white p-10 text-[#e2b714] overflow-y-scroll">
         <h1 className="text-5xl text-[#e2b714] font-bold">
           Clashdle - Clash of Clans
         </h1>
