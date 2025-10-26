@@ -52,6 +52,7 @@ export default function getDailyTroop(): TroopData {
 
   // 🔹 Generate daily seed
   const today = new Date();
+  today.setHours(today.getHours() - 4);
   const seedString = today.toISOString().split("T")[0]; // "YYYY-MM-DD"
   const seed = stringToSeed(seedString);
 
