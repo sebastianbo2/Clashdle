@@ -99,10 +99,10 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
 
             {[...guesses].reverse().map((guess) => {
                 return (
-                    <div className="mt-5 flex flex-row gap-10 pr-5 pl-5">
+                    <div key={guess.troop_name} className="mt-5 flex flex-row gap-10 pr-5 pl-5">
                         {Object.entries(guess).map((entry) => {
                             return (
-                            <div>
+                            <div key={entry[0]}>
                                 {entry[0] != "troop_name" ?
                                     <div className={"flex flex-col gap-5 w-[130px] h-[130px] flex text-center items-center justify-center border-[1px] rounded-xl "
                                     + (entry[1] == Object.entries(dailyTroop).find((a) => a[0] == entry[0])?.[1] ? "bg-[#00cf00]": "bg-[#9F0000]")}
