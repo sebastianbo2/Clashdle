@@ -34,7 +34,7 @@ Super Archer,Super Troop,None,Ranged (Ground & Air),12,24,1.5,6
 Super Giant,Super Troop / Clan Capital,Defenses,Melee (Ground Only),10,12,2,1
 Sneaky Goblin,Super Troop,Resources,Melee (Ground Only),3,32,1,0.4
 Super Wall Breaker,Super Troop,Walls,Area Splash (Ground Only),8,28,0.6
-Rocket Balloon,Super Troop / Clan Capital,Area Splash (Ground Only),8,12,3,0.5
+Rocket Balloon,Super Troop / Clan Capital,Defenses,Area Splash (Ground Only),8,12,3,0.5
 Super Wizard,Super Troop / Clan Capital,None,Single Target,10,20,2,3
 Super Dragon,Super Troop / Clan Capital,None,Area Splash (Ground & Air),40,14,1.8,3
 Inferno Dragon,Super Troop / Clan Capital,None,Single Target,15,18,0.128,4
