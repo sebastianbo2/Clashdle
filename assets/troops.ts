@@ -7,7 +7,7 @@ Wall Breaker,Elixir,Walls,Area Splash (Ground Only),2,24,1,1
 Balloon,Elixir,Defenses,Area Splash (Ground Only),5,10,3,0.5
 Wizard,Elixir,None,Area Splash (Ground & Air),4,16,1.5,3
 Healer,Elixir,None,Area Splash (Ground Only),14,16,0.7,5
-Dragon,Elixir,Area Splash (Ground & Air),20,16,1.25,3
+Dragon,Elixir,None,Area Splash (Ground & Air),20,16,1.25,3
 Pekka,Elixir,None,Melee (Ground Only),25,16,1.8,0.8
 Baby Dragon,Elixir / Builder Base,None,Area Splash (Ground & Air),10,20,1,2.75
 Miner,Elixir,None,Single Target,6,32,1.7,0.5
