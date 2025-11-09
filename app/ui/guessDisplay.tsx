@@ -78,7 +78,7 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
     return (
         <div>
             {inputText.length != 0 && parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase()) && !guesses.some((guess) => guess.troop_name === troop.troop_name)).length != 0 &&
-                <div className="border-[3px] border-solid border-red-500 pr-5 pl-2 h-78 overflow-y-scroll custom-scrollbar mt-5 bg-[#d1d0c5] rounded-2xl absolute left-[40%] w-[20%]">
+                <div className="z-[1000] border-[3px] border-solid border-red-500 pr-5 pl-2 h-78 overflow-y-scroll custom-scrollbar mt-5 bg-[#d1d0c5] rounded-2xl absolute left-[40%] w-[20%]">
                     {parsedTroops.filter((troop: TroopData) => troop.troop_name.toLowerCase().includes(inputText.toLowerCase()) && !guesses.some((guess) => guess.troop_name === troop.troop_name)).map((troop) => {
                         return (
                             <button key={troop.troop_name} className="block hover:opacity-[0.7] hover:cursor-pointer select-none pl-2 pr-2 pt-5 pb-5"
