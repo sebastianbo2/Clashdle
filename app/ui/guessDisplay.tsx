@@ -6,6 +6,14 @@ import { useState } from "react";
 import Image from "next/image";
 import troopData from "@/assets/troops";
 import getDailyTroop from "@/assets/troopSelector";
+import { Overpass } from 'next/font/google'
+ 
+const inter = Overpass({
+  subsets: ["latin"],
+  variable: "--font-inter", // optional, for Tailwind integration
+  display: "swap",
+  weight: "400",
+});
 
 interface TroopData {
     troop_name: string,
@@ -104,10 +112,12 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
                             return (
                             <div key={entry[0]}>
                                 {entry[0] != "troop_name" ?
-                                    <div className={"flex flex-col gap-5 w-[130px] h-[130px] flex text-center items-center justify-center border-[1px] rounded-xl "
+                                    <div className={"relative flex flex-col gap-5 w-[130px] h-[130px] flex text-center items-center justify-center border-[1px] rounded-xl "
                                     + (entry[1] == Object.entries(dailyTroop).find((a) => a[0] == entry[0])?.[1] ? "bg-[#00cf00]": "bg-[#9F0000]")}
                                     style={{ boxShadow: "inset 0 4px 30px rgba(0, 0, 0, 0.8)" }}>
-                                        <p className="inline-block text-[18px]">{entry[1]}</p>
+                                        {Number(Object.entries(guess).findIndex((e) => e[0] == entry[0])) > 3 && !(entry[1] == Object.entries(dailyTroop).find((a) => a[0] == entry[0])?.[1]) ? <span className={`${inter.className} absolute text-center flex top-[10%] justify-center items-center z-[1] h-[130px] w-[130px] text-[120px] text-[#00000080]`}>
+                                            {(Object.entries(dailyTroop).find((a) => a[0] == entry[0])?.[1] > entry[1]) ? "↑": "↓"}</span> : ""}
+                                        <p className="z-[2] inline-block text-[18px]">{entry[1]}</p>
                                     </div> : 
                                     <div className="mt-2 ml-2 mr-2 border-[4px] rounded-2xl" style={{ boxShadow: "inset 0 4px 40px rgba(0, 0, 0, 0.8)" }}>
                                         <Image className="" src={"/troop_icons/" + entry[1].toLowerCase().replace(/ /g, "_") + ".png"} alt={entry[1]} width={110} height={80}/>
