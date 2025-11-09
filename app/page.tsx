@@ -16,7 +16,7 @@ export default function Home() {
       <div className="absolute inset-0 bg-[#0e0e0e]/72"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center h-full text-white p-10 text-[#e2b714] overflow-y-scroll">
+      <div className="relative z-10 flex flex-col items-center h-full text-white p-10 text-[#e2b714] overflow-y-scroll pb-50">
         <h1 className="text-5xl text-[#e2b714] font-bold">
           Clashdle - Clash of Clans
         </h1>
