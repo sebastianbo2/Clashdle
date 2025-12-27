@@ -2,7 +2,7 @@
 
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import troopData from "@/assets/troops";
 import getDailyTroop from "@/assets/troopSelector";
@@ -58,11 +58,19 @@ export default function GuessDisplay(Props: { inputText: string, onClear: Functi
 
     const [guesses, setGuesses] = useState<TroopData[]>([]);
 
+    useEffect(() => {
+        const stored = localStorage.getItem('guesses');
+        if (stored) {
+            setGuesses(JSON.parse(stored))
+        }
+    }, []);
+
     const handleSubmission = (troop: TroopData) => {
         if (guesses.includes(troop)) {
             console.log("contains already!");
         } else {
             setGuesses(prev => [...prev, troop]);
+            localStorage.setItem('guesses', JSON.stringify([...guesses, troop]));
         }
         const params = new URLSearchParams(searchParams.toString());
 
